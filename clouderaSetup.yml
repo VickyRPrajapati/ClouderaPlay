@@ -1,0 +1,30 @@
+---
+- hosts: cm_hosts:cdh_hosts
+  become: yes
+  tasks:
+    - name: install required softwares
+      yum: 
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - "*"
+        - epel-release
+        - python-pip
+        - python-devel
+        - "@Development tools"
+        - wget
+        - git
+        - postgresql
+
+
+- hosts: cdh_hosts
+  become: yes
+  roles:
+  - setup_slave
+
+
+- hosts: cm_hosts
+  become: yes
+  roles:
+  - setup_master
+

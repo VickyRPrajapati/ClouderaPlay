@@ -1,0 +1,4 @@
+- hosts: cm_hosts
+  become: yes
+  roles:
+  - deploy_cluster
